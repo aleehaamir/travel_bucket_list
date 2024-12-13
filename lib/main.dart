@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:travel_bucket_list/models/user_model.dart';
 
 import 'screens/about_us_screen.dart'; // Import AboutUsScreen
 import 'screens/auth/login_screen.dart'; // Import your LoginScreen
@@ -16,8 +17,9 @@ import 'screens/splash/splash_screen.dart'; // Import your SplashScreen
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory directory = await getApplicationDocumentsDirectory();
-  Hive.init(directory.path);
-  // ..registerAdapter(User())
+  Hive
+    ..init(directory.path)
+    ..registerAdapter(UserModelAdapter());
   // ..registerAdapter(ChatModelAdapter())
   // ..registerAdapter(ContentAdapter());
 
