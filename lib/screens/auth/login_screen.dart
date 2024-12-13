@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:travel_bucket_list/screens/auth/service/auth_service.dart';
 
-import '../home_screen.dart'; // Import the HomeScreen after successful login
+import '../home/home_screen.dart'; // Import the HomeScreen after successful login
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with AuthService {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();

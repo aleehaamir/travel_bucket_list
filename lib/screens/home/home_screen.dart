@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'bucket_list_screen.dart';
-import 'history_screen.dart';
-import 'profile_screen.dart';
-import 'trending_destinations_screen.dart';
-import 'user_preferences_screen.dart';
-import 'about_us_screen.dart'; // Import About Us Screen
+
+import '../about_us/about_us_screen.dart'; // Import About Us Screen
+import '../bucket/bucket_list_screen.dart';
+import '../history/history_screen.dart';
+import '../profile/profile_screen.dart';
+import '../trending/trending_destinations_screen.dart';
+import '../user_preferences/user_preferences_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,7 +19,8 @@ class HomeScreen extends StatelessWidget {
         leading: const Padding(
           padding: EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundImage: AssetImage('assets/images/app_logo.jpg'), // Replace with your logo asset
+            backgroundImage: AssetImage(
+                'assets/images/app_logo.jpg'), // Replace with your logo asset
           ),
         ),
         title: const Text(
@@ -74,7 +76,8 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const BucketListScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const BucketListScreen()),
                 );
               },
             ),
@@ -86,7 +89,8 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HistoryScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const HistoryScreen()),
                 );
               },
             ),
@@ -98,7 +102,8 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TrendingDestinationsScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => TrendingDestinationsScreen()),
                 );
               },
             ),
@@ -110,7 +115,8 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UserPreferencesScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const UserPreferencesScreen()),
                 );
               },
             ),
@@ -122,7 +128,8 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AboutUsScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const AboutUsScreen()),
                 );
               },
             ),
@@ -132,7 +139,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureCard(BuildContext context, {required String title, required IconData icon, required VoidCallback onTap}) {
+  Widget _buildFeatureCard(BuildContext context,
+      {required String title,
+      required IconData icon,
+      required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -147,7 +157,8 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(width: 16),
               Text(
                 title,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ],
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'checkout_screen.dart';
 
 class TrendingDestinationsScreen extends StatelessWidget {
   final List<Map<String, dynamic>> destinations = [
@@ -47,13 +46,15 @@ class TrendingDestinationsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final destination = destinations[index];
           return Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             elevation: 4,
             margin: const EdgeInsets.only(bottom: 16.0),
             child: Column(
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(16)),
                   child: Image.asset(
                     destination['image'],
                     height: 200,
@@ -68,7 +69,8 @@ class TrendingDestinationsScreen extends StatelessWidget {
                     children: [
                       Text(
                         destination['name'],
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8),
                       Text(destination['description']),
@@ -83,22 +85,25 @@ class TrendingDestinationsScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.teal,
                             foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 24),
                           ),
                           onPressed: () {
                             // Pass selected city, hotel, and package to CheckoutScreen
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CheckoutScreen(
-                                  selectedCity: destination['city'],
-                                  selectedHotel: destination['hotel'],
-                                  selectedPackage: destination['package'],
-                                  nights: 3, // Default nights value (can be dynamic)
-                                  totalCost: 50000, // Default cost value (can be dynamic)
-                                ),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => CheckoutScreen(
+                            //       selectedCity: destination['city'],
+                            //       selectedHotel: destination['hotel'],
+                            //       selectedPackage: destination['package'],
+                            //       nights:
+                            //           3, // Default nights value (can be dynamic)
+                            //       totalCost:
+                            //           50000, // Default cost value (can be dynamic)
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: const Text('Select Package'),
                         ),

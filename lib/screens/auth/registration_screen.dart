@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_bucket_list/screens/auth/service/auth_service.dart';
 
 import 'login_screen.dart'; // Make sure to import your LoginScreen
 
@@ -9,7 +10,8 @@ class RegistrationScreen extends StatefulWidget {
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen>
+    with AuthService {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();

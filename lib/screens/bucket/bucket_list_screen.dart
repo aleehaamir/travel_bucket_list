@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'city_selection_screen.dart';
 
 class BucketListScreen extends StatefulWidget {
@@ -20,7 +21,8 @@ class _BucketListScreenState extends State<BucketListScreen> {
           style: TextStyle(color: Colors.white), // AppBar text color
         ),
         backgroundColor: Colors.teal, // Theme color for AppBar
-        iconTheme: const IconThemeData(color: Colors.white), // Back button color
+        iconTheme:
+            const IconThemeData(color: Colors.white), // Back button color
       ),
       body: Container(
         color: Colors.white, // Background color for the screen
@@ -46,7 +48,8 @@ class _BucketListScreenState extends State<BucketListScreen> {
                   itemBuilder: (context, index) {
                     var trip = bucketList[index];
                     return Card(
-                      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -63,7 +66,8 @@ class _BucketListScreenState extends State<BucketListScreen> {
                         ),
                         subtitle: Text(
                           'Hotel: ${trip['hotel']}, Nights: ${trip['nights']}',
-                          style: const TextStyle(fontSize: 16, color: Colors.black87),
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.black87),
                         ),
                         trailing: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +84,8 @@ class _BucketListScreenState extends State<BucketListScreen> {
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.teal, // Button color
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 8),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -97,7 +102,8 @@ class _BucketListScreenState extends State<BucketListScreen> {
                               },
                               child: const Text(
                                 'Proceed to Payment',
-                                style: TextStyle(fontSize: 14, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
                               ),
                             ),
                           ],
@@ -112,7 +118,8 @@ class _BucketListScreenState extends State<BucketListScreen> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal, // Button color
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -121,11 +128,13 @@ class _BucketListScreenState extends State<BucketListScreen> {
                   // Add new trip, after selecting city and hotel
                   final result = await Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const CitySelectionScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const CitySelectionScreen()),
                   );
                   if (result != null) {
                     setState(() {
-                      bucketList.add(result); // Add the new trip to the bucket list
+                      bucketList
+                          .add(result); // Add the new trip to the bucket list
                     });
                   }
                 },
