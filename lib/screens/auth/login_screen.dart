@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';  // Import the HomeScreen after successful login
+
+import '../home_screen.dart'; // Import the HomeScreen after successful login
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 80),
-                  Center(
+                  const Center(
                     child: Text(
                       'Travel Trail',
                       style: TextStyle(
@@ -38,16 +39,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Center(
+                  const Center(
                     child: Text(
                       'Sign in to explore amazing travel destinations!',
                       style: TextStyle(fontSize: 14.0, color: Colors.grey),
                     ),
                   ),
                   const SizedBox(height: 32),
-                  _buildTextField(_usernameController, 'Enter Username', 'Username is required'),
+                  _buildTextField(_usernameController, 'Enter Username',
+                      'Username is required'),
                   const SizedBox(height: 16),
-                  _buildPasswordField(_passwordController, 'Enter Password', 'Password is required'),
+                  _buildPasswordField(_passwordController, 'Enter Password',
+                      'Password is required'),
                   const SizedBox(height: 24),
                   SizedBox(
                     width: double.infinity,
@@ -57,18 +60,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Navigate to HomeScreen after successful login
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const HomeScreen()),
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()),
                           );
                         }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text('Log In', style: TextStyle(color: Colors.white)),
+                      child: const Text('Log In',
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -80,7 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: const Text(
                         'Don\'t have an account? Sign Up',
-                        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -120,7 +126,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildPasswordField(TextEditingController controller, String hintText, String validationError) {
+  Widget _buildPasswordField(TextEditingController controller, String hintText,
+      String validationError) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
