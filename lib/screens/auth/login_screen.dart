@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_bucket_list/screens/auth/service/auth_service.dart';
 
-import '../home/home_screen.dart'; // Import the HomeScreen after successful login
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -59,11 +57,10 @@ class _LoginScreenState extends State<LoginScreen> with AuthService {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           // Navigate to HomeScreen after successful login
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomeScreen()),
-                          );
+                          login(
+                              context: context,
+                              name: _usernameController.text,
+                              password: _passwordController.text);
                         }
                       },
                       style: ElevatedButton.styleFrom(

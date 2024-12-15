@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:travel_bucket_list/HiveHelper/hive_helper_sevices.dart';
+import 'package:travel_bucket_list/screens/home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,14 +25,14 @@ class _SplashScreenState extends State<SplashScreen>
       loadinglvl = 1;
       setState(() {});
     });
-    Timer(const Duration(milliseconds: 2500), () {
+    Timer(const Duration(milliseconds: 1500), () {
       loadinglvl = 2;
       setState(() {});
     });
     // Animation controller for logo and text animation
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
     );
 
     // Animating logo (scaling and rotating)
@@ -47,9 +49,22 @@ class _SplashScreenState extends State<SplashScreen>
     _controller.forward();
 
     // Navigate to Registration Screen after 3 seconds
-    Timer(const Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, '/register');
+    Timer(const Duration(seconds: 3), () {
+      navigation();
     });
+  }
+
+  void navigation() async {
+    bool isLogin =
+        await HiveService().isExists(boxName: HiveService().currentUser);
+    if (isLogin) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    } else {
+      Navigator.pushReplacementNamed(context, '/register');
+    }
   }
 
   @override
@@ -116,7 +131,7 @@ class _SplashScreenState extends State<SplashScreen>
               child: Row(
                 children: [
                   AnimatedContainer(
-                    duration: const Duration(milliseconds: 2500),
+                    duration: const Duration(milliseconds: 1500),
                     height: 15,
                     width: loadinglvl == 2
                         ? MediaQuery.sizeOf(context).width - 42

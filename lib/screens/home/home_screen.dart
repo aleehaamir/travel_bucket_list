@@ -50,90 +50,92 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        color: Colors.grey.shade200,
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Welcome Section
-            const Padding(
-              padding: EdgeInsets.only(bottom: 24.0),
-              child: Text(
-                'Welcome to your Travel Bucket List!',
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.grey.shade200,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Welcome Section
+              const Padding(
+                padding: EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  'Welcome to your Travel Bucket List!',
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-            // Feature Cards
-            _buildFeatureCard(
-              context,
-              title: 'Make Your Bucket List',
-              icon: Icons.add_circle_outline,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BucketListScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 16),
-            _buildFeatureCard(
-              context,
-              title: 'View History',
-              icon: Icons.history,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const HistoryScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 16),
-            _buildFeatureCard(
-              context,
-              title: 'Trending Destinations',
-              icon: Icons.explore,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => TrendingDestinationsScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 16),
-            _buildFeatureCard(
-              context,
-              title: 'User Preferences',
-              icon: Icons.settings,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const UserPreferencesScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 16),
-            _buildFeatureCard(
-              context,
-              title: 'About Us',
-              icon: Icons.info,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AboutUsScreen()),
-                );
-              },
-            ),
-          ],
+              // Feature Cards
+              _buildFeatureCard(
+                context,
+                title: 'Make Your Bucket List',
+                icon: Icons.add_circle_outline,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BucketListScreen()),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              _buildFeatureCard(
+                context,
+                title: 'View History',
+                icon: Icons.history,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HistoryScreen()),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              _buildFeatureCard(
+                context,
+                title: 'Trending Destinations',
+                icon: Icons.explore,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TrendingDestinationsScreen()),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              _buildFeatureCard(
+                context,
+                title: 'User Preferences',
+                icon: Icons.settings,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UserPreferencesScreen()),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              _buildFeatureCard(
+                context,
+                title: 'About Us',
+                icon: Icons.info,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AboutUsScreen()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

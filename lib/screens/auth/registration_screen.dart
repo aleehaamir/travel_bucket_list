@@ -19,6 +19,9 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  bool _isObscurePass = true;
+  bool _isObscureConfirm = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,18 +67,24 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                       'Confirm Password', 'Passwords do not match',
                       validator: (value) => value != _passwordController.text
                           ? 'Passwords do not match'
-                          : null),
+                          : null,
+                      isConfirm: true),
                   const SizedBox(height: 24),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginScreen()),
-                          );
+                          registerUser(
+                              context: context,
+                              name: _usernameController.text,
+                              email: _emailController.text,
+                              password: _passwordController.text);
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const LoginScreen()),
+                          // );
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -144,7 +153,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
 
   Widget _buildPasswordField(
       TextEditingController controller, String hintText, String validationError,
-      {String? Function(String?)? validator}) {
+      {String? Function(String?)? validator, bool isConfirm = false}) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
@@ -155,8 +164,29 @@ class _RegistrationScreenState extends State<RegistrationScreen>
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide.none,
         ),
+        suffixIcon: isConfirm
+            ? IconButton(
+                icon: Icon(
+                  _isObscureConfirm ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isObscureConfirm = !_isObscureConfirm;
+                  });
+                },
+              )
+            : IconButton(
+                icon: Icon(
+                  _isObscurePass ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isObscurePass = !_isObscurePass;
+                  });
+                },
+              ),
       ),
-      obscureText: true,
+      obscureText: isConfirm ? _isObscureConfirm : _isObscurePass,
       validator: validator ??
           (value) {
             if (value == null || value.isEmpty) {
