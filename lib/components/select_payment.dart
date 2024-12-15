@@ -41,16 +41,14 @@ Widget _buildPaymentOption(
         leading: Icon(icon, size: 32, color: Colors.teal),
         title: Text(label, style: const TextStyle(fontSize: 16)),
         onTap: () {
-          callback();
-          Navigator.pop(context);
+          // Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
             label == "Pay with Cash"
                 ? "You selected Pay with Cash. Your booking has been confirmed."
                 : "Your payment with $label has been processed successfully. Your booking has been confirmed.",
           )));
-
-          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+          callback();
         },
       ),
       const Divider(

@@ -24,6 +24,8 @@ mixin BucketService {
           .add(BucketModel(name: user.name, email: user.email, trips: [order]));
       await HiveService().addBoxAndDelete(allBuckets, HiveService().allBuckets);
     }
+
+    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
   }
 
   Future<List<CityModel>> getBucketService(BuildContext context) async {
