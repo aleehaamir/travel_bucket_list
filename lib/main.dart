@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:travel_bucket_list/models/hotel_model.dart';
+import 'package:travel_bucket_list/models/city_model.dart';
 import 'package:travel_bucket_list/models/user_model.dart';
 
 import 'screens/about_us/about_us_screen.dart'; // Import AboutUsScreen
@@ -20,8 +20,10 @@ void main() async {
   Directory directory = await getApplicationDocumentsDirectory();
   Hive
     ..init(directory.path)
-    ..registerAdapter(UserModelAdapter());
-  // ..registerAdapter(ChatModelAdapter())
+    ..registerAdapter(UserModelAdapter())
+    ..registerAdapter(BucketModelAdapter())
+    ..registerAdapter(CityModelAdapter())
+    ..registerAdapter(HotelAdapter());
   // ..registerAdapter(ContentAdapter());
 
   runApp(const TravelBucketListApp());
@@ -47,7 +49,7 @@ class TravelBucketListApp extends StatelessWidget {
         '/about_us': (context) => const AboutUsScreen(),
         '/checkout': (context) => CheckoutScreen(
               totalAmount: 0,
-              city: City(name: '', image: '', hotels: []),
+              city: CityModel(name: '', image: '', hotels: []),
               // selectedCity: '', // Provide a default or placeholder value
               // selectedHotel: '', // Provide a default or placeholder value
               // selectedPackage: '',

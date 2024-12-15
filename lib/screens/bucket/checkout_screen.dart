@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:travel_bucket_list/components/select_payment.dart';
-import 'package:travel_bucket_list/models/hotel_model.dart';
+import 'package:travel_bucket_list/models/city_model.dart';
+import 'package:travel_bucket_list/screens/bucket/service/bucket_service.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  final City city;
+  final CityModel city;
   double totalAmount;
 
   CheckoutScreen({Key? key, required this.city, required this.totalAmount})
@@ -13,13 +14,14 @@ class CheckoutScreen extends StatefulWidget {
   State<CheckoutScreen> createState() => _CheckoutScreenState();
 }
 
-class _CheckoutScreenState extends State<CheckoutScreen> {
-  City selections = City(name: "", image: '', hotels: []);
+class _CheckoutScreenState extends State<CheckoutScreen> with BucketService {
+  CityModel selections = CityModel(name: "", image: '', hotels: []);
   @override
   void initState() {
     super.initState();
     selections = widget.city;
     selections.hotels.removeWhere((element) => element.days == 0);
+    selections.amount = widget.totalAmount;
     setState(() {});
   }
 
@@ -163,7 +165,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                showPaymentBottomSheet(context);
+                showPaymentBottomSheet(context, () {
+                  addToBucket(context, selections);
+                });
                 // Handle payment logic here
               },
               style: ElevatedButton.styleFrom(

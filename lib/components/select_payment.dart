@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void showPaymentBottomSheet(BuildContext context) {
+void showPaymentBottomSheet(BuildContext context, Function callBack) {
   showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
@@ -20,10 +20,12 @@ void showPaymentBottomSheet(BuildContext context) {
               ),
             ),
             const SizedBox(height: 16),
-            _buildPaymentOption(context, Icons.attach_money, 'Pay with Cash'),
-            _buildPaymentOption(context, Icons.g_mobiledata, 'Google Pay'),
-            _buildPaymentOption(context, Icons.credit_card, 'Card'),
-            _buildPaymentOption(context, Icons.apple, 'Apple Pay'),
+            _buildPaymentOption(
+                context, Icons.attach_money, 'Pay with Cash', callBack),
+            _buildPaymentOption(
+                context, Icons.g_mobiledata, 'Google Pay', callBack),
+            _buildPaymentOption(context, Icons.credit_card, 'Card', callBack),
+            _buildPaymentOption(context, Icons.apple, 'Apple Pay', callBack),
           ],
         ),
       );
@@ -31,13 +33,15 @@ void showPaymentBottomSheet(BuildContext context) {
   );
 }
 
-Widget _buildPaymentOption(BuildContext context, IconData icon, String label) {
+Widget _buildPaymentOption(
+    BuildContext context, IconData icon, String label, Function callback) {
   return Column(
     children: [
       ListTile(
         leading: Icon(icon, size: 32, color: Colors.teal),
         title: Text(label, style: const TextStyle(fontSize: 16)),
         onTap: () {
+          callback();
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
@@ -45,6 +49,8 @@ Widget _buildPaymentOption(BuildContext context, IconData icon, String label) {
                 ? "You selected Pay with Cash. Your booking has been confirmed."
                 : "Your payment with $label has been processed successfully. Your booking has been confirmed.",
           )));
+
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
         },
       ),
       const Divider(

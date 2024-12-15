@@ -1,7 +1,7 @@
-import 'package:travel_bucket_list/models/hotel_model.dart';
+import 'package:travel_bucket_list/models/city_model.dart';
 
-List<City> citiesList() => [
-      City(name: 'Paris', image: "assets/images/paris.jpg", hotels: [
+List<CityModel> citiesList() => [
+      CityModel(name: 'Paris', image: "assets/images/paris.jpg", hotels: [
         Hotel(
           name: 'Hotel Le Meurice',
           address: '228 Rue de Rivoli, 75001 Paris, France',
@@ -27,7 +27,7 @@ List<City> citiesList() => [
           price: 950,
         ),
       ]),
-      City(name: 'Dubai', image: "assets/images/dubai.jpg", hotels: [
+      CityModel(name: 'Dubai', image: "assets/images/dubai.jpg", hotels: [
         Hotel(
           name: 'Burj Al Arab Jumeirah',
           address: 'Jumeirah Street, Dubai, United Arab Emirates',
@@ -54,7 +54,7 @@ List<City> citiesList() => [
           price: 1000,
         ),
       ]),
-      City(name: 'New York', image: "assets/images/new_york.jpg", hotels: [
+      CityModel(name: 'New York', image: "assets/images/new_york.jpg", hotels: [
         Hotel(
           name: 'The Plaza Hotel',
           address: '768 5th Ave, New York, NY 10019, USA',
@@ -80,7 +80,7 @@ List<City> citiesList() => [
           price: 1100,
         ),
       ]),
-      City(name: 'Tokyo', image: "assets/images/tokyo.jpg", hotels: [
+      CityModel(name: 'Tokyo', image: "assets/images/tokyo.jpg", hotels: [
         Hotel(
           name: 'The Ritz-Carlton Tokyo',
           address:
@@ -108,7 +108,7 @@ List<City> citiesList() => [
           price: 900,
         ),
       ]),
-      City(name: 'Cairo', image: "assets/images/cairo.jpg", hotels: [
+      CityModel(name: 'Cairo', image: "assets/images/cairo.jpg", hotels: [
         Hotel(
           name: 'Marriott Mena House, Cairo',
           address: '6 Pyramids Rd, Giza, Cairo Governorate 12556, Egypt',
@@ -136,7 +136,7 @@ List<City> citiesList() => [
           price: 500,
         ),
       ]),
-      City(name: 'London', image: "assets/images/london.jpg", hotels: [
+      CityModel(name: 'London', image: "assets/images/london.jpg", hotels: [
         Hotel(
           name: 'The Ritz London',
           address:
@@ -164,7 +164,7 @@ List<City> citiesList() => [
           price: 1500,
         ),
       ]),
-      City(name: 'Sydney', image: "assets/images/sydney.jpg", hotels: [
+      CityModel(name: 'Sydney', image: "assets/images/sydney.jpg", hotels: [
         Hotel(
           name: 'The Langham, Sydney',
           address: '89-113 Kent St, Millers Point, Sydney NSW 2000, Australia',

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travel_bucket_list/models/city_model.dart';
+import 'package:travel_bucket_list/screens/bucket/service/bucket_service.dart';
 
 import 'city_selection_screen.dart';
 
@@ -9,8 +11,22 @@ class BucketListScreen extends StatefulWidget {
   State<BucketListScreen> createState() => _BucketListScreenState();
 }
 
-class _BucketListScreenState extends State<BucketListScreen> {
-  List<Map<String, dynamic>> bucketList = []; // Store trips in a list
+class _BucketListScreenState extends State<BucketListScreen>
+    with BucketService {
+  List<CityModel> bucketList = [];
+
+  // Store trips in a list
+
+  @override
+  void initState() {
+    super.initState();
+    getBucket();
+  }
+
+  void getBucket() async {
+    bucketList = await getBucketService(context);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,68 +64,84 @@ class _BucketListScreenState extends State<BucketListScreen> {
                   itemBuilder: (context, index) {
                     var trip = bucketList[index];
                     return Card(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 4,
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(16),
-                        title: Text(
-                          trip['city'],
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.teal, // Theme color for city name
-                          ),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        subtitle: Text(
-                          'Hotel: ${trip['hotel']}, Nights: ${trip['nights']}',
-                          style: const TextStyle(
-                              fontSize: 16, color: Colors.black87),
-                        ),
-                        trailing: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Rs. ${trip['totalCost']}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.teal,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.teal, // Button color
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 8),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                        elevation: 4,
+                        child: SizedBox(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      trip.name,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.teal,
+                                          fontSize: 18),
+                                    ),
+                                    Text(
+                                      "Rs${trip.amount}",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.teal,
+                                          fontSize: 12),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              onPressed: () {
-                                // Proceed to checkout for the selected trip
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Proceeding with payment for ${trip['city']}',
+                                SizedBox(
+                                  height: trip.hotels.length * 50,
+                                  // width: MediaQuery.sizeOf(context).width - 160,
+                                  child: ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: trip.hotels.length,
+                                    itemBuilder: (context, index) => Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Divider(),
+                                        Text(
+                                          trip.hotels[index].date,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                              fontSize: 12),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              trip.hotels[index].name,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.black,
+                                                  fontSize: 12),
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              "${trip.hotels[index].days} Days",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.black,
+                                                  fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                );
-                              },
-                              child: const Text(
-                                'Proceed to Payment',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.white),
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                    );
+                          ),
+                        ));
                   },
                 ),
               ),

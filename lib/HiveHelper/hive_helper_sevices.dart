@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 class HiveService {
   String usersList = 'usersList';
   String currentUser = 'currentUser';
+  String allBuckets = 'allBuckets';
   isExists({required String boxName}) async {
     final openBox = await Hive.openBox(boxName);
     int length = openBox.length;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:travel_bucket_list/components/date_time_picker.dart';
-import 'package:travel_bucket_list/models/hotel_model.dart';
+import 'package:travel_bucket_list/models/city_model.dart';
 
 import 'checkout_screen.dart';
 
 class HotelSelectionScreen extends StatefulWidget {
-  final City city;
+  final CityModel city;
 
   const HotelSelectionScreen({Key? key, required this.city}) : super(key: key);
 
