@@ -5,14 +5,17 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:travel_bucket_list/models/city_model.dart';
 import 'package:travel_bucket_list/models/user_model.dart';
+import 'package:travel_bucket_list/screens/about_us/about_us_screen.dart';
+import 'package:travel_bucket_list/screens/bucket/bucket_list_screen.dart';
+import 'package:travel_bucket_list/screens/bucket/checkout_screen.dart';
+import 'package:travel_bucket_list/screens/history/history_screen.dart';
+import 'package:travel_bucket_list/screens/home/home_screen.dart';
 
-import 'screens/about_us/about_us_screen.dart'; // Import AboutUsScreen
+
 import 'screens/auth/login_screen.dart'; // Import your LoginScreen
 import 'screens/auth/registration_screen.dart'; // Import your RegistrationScreen
-import 'screens/bucket/bucket_list_screen.dart'; // Import BucketListScreen
-import 'screens/bucket/checkout_screen.dart'; // Import CheckoutScreen
-import 'screens/history/history_screen.dart'; // Import HistoryScreen
-import 'screens/home/home_screen.dart'; // Import your HomeScreen
+ // Import BucketListScreen
+ // Import your HomeScreen
 import 'screens/splash/splash_screen.dart'; // Import your SplashScreen
 
 void main() async {
@@ -24,6 +27,7 @@ void main() async {
     ..registerAdapter(BucketModelAdapter())
     ..registerAdapter(CityModelAdapter())
     ..registerAdapter(HotelAdapter());
+  // ..registerAdapter(ChatModelAdapter())
   // ..registerAdapter(ContentAdapter());
 
   runApp(const TravelBucketListApp());
@@ -47,15 +51,9 @@ class TravelBucketListApp extends StatelessWidget {
         '/bucket_list': (context) => const BucketListScreen(),
         '/history': (context) => const HistoryScreen(),
         '/about_us': (context) => const AboutUsScreen(),
-        '/checkout': (context) => CheckoutScreen(
-              totalAmount: 0,
-              city: CityModel(name: '', image: '', hotels: []),
-              // selectedCity: '', // Provide a default or placeholder value
-              // selectedHotel: '', // Provide a default or placeholder value
-              // selectedPackage: '',
-              // nights: 0, // Default value to avoid Null assignment
-              // totalCost: 0, // Default value to avoid Null assignment
-            ),
+        '/checkout': (context) => CheckoutScreen(totalAmount: 0,
+              city: CityModel(name: '', image: '',hotels:[]
+            ),)
       },
     );
   }
